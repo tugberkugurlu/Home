@@ -15,9 +15,19 @@ namespace HelloMvc
                 services.AddMvc();
             });
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("areaRoute", "{area:exists}/{controller}/{action}");
+                routes.MapRoute(
+                    "controllerActionRoute",
+                    "{controller}/{action}",
+                    new { controller = "Home", action = "Index" });
 
-            app.UseWelcomePage();
+                routes.MapRoute(
+                    "controllerRoute",
+                    "{controller}",
+                    new { controller = "Home" });
+            });
         }
     }
 }

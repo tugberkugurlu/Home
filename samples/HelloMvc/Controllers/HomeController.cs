@@ -12,9 +12,11 @@ namespace MvcSample.Web
 
         public User CreateUser()
         {
+			var hasCtx = System.Threading.SynchronizationContext.Current == null;
+			
             User user = new User()
             {
-                Name = "My name",
+                Name = $"My name ({hasCtx})",
                 Address = "My address"
             };
 
